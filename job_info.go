@@ -185,3 +185,56 @@ func (p *Job) GetStatus() string {
 	}
 	return strings.TrimRight(status, ",")
 }
+
+func (p *Job) GetChinesStatus() string {
+	var status string
+	if p.Status == 0 {
+		status += "已完成,"
+	}
+	if p.Status&JOB_STATUS_PRINTING != 0 {
+		status += "打印中,"
+	}
+	if p.Status&JOB_STATUS_PAUSED != 0 {
+		status += "已暂停,"
+	}
+	if p.Status&JOB_STATUS_ERROR != 0 {
+		status += "错误,"
+	}
+	if p.Status&JOB_STATUS_DELETING != 0 {
+		status += "删除中,"
+	}
+	if p.Status&JOB_STATUS_SPOOLING != 0 {
+		status += "假脱机,"
+	}
+	if p.Status&JOB_STATUS_OFFLINE != 0 {
+		status += "离线,"
+	}
+	if p.Status&JOB_STATUS_PAPEROUT != 0 {
+		status += "缺纸,"
+	}
+	if p.Status&JOB_STATUS_PRINTED != 0 {
+		status += "已打印,"
+	}
+	if p.Status&JOB_STATUS_DELETED != 0 {
+		status += "已删除,"
+	}
+	if p.Status&JOB_STATUS_BLOCKED_DEVQ != 0 {
+		status += "驱动错误,"
+	}
+	if p.Status&JOB_STATUS_USER_INTERVENTION != 0 {
+		status += "需要用户操作,"
+	}
+	if p.Status&JOB_STATUS_RESTART != 0 {
+		status += "重启中,"
+	}
+	if p.Status&JOB_STATUS_COMPLETE != 0 {
+		status += "已发送到打印机,"
+	}
+	if p.Status&JOB_STATUS_RETAINED != 0 {
+		status += "保留作业,"
+	}
+	if p.Status&JOB_STATUS_RENDERING_LOCALLY != 0 {
+		status += "渲染到客户端,"
+	}
+	return strings.TrimRight(status, ",")
+}

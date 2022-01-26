@@ -89,6 +89,23 @@ func TestPrint(t *testing.T) {
 	}
 }
 
+func TestGetJob(t *testing.T) {
+	handle := testGetDefaultPrinter(t)
+	defer handle.ClosePrinter()
+	jobs1, err := handle.EnumJobs1()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(jobs1) > 0 {
+
+	}
+	job, err := handle.GetJob(jobs1[0].JobID)
+	if err != nil {
+		t.Fatal(err)
+	}
+	printJson(t, job)
+}
+
 func TestReleaseJob(t *testing.T) {
 	handle := testGetDefaultPrinter(t)
 	defer handle.ClosePrinter()
