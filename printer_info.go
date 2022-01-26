@@ -273,7 +273,7 @@ func (p *Printer) GetAttributes() map[string]bool {
 		attributes["is_raw_only"] = true
 	}
 	if p.Attributes&PRINTER_ATTRIBUTE_SHARED > 0 {
-		attributes["ish_shared"] = true
+		attributes["is_shared"] = true
 	}
 	return attributes
 }
